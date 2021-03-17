@@ -17,6 +17,13 @@ public class RouteServlet extends BaseServlet {
 
     private RouteService routeService = new RouteServiceImpl();
 
+    /**
+     * 分页查询
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     public void pageQuery(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String currentPageStr = request.getParameter("currentPage");
         String pageSizeStr = request.getParameter("pageSize");
@@ -41,7 +48,9 @@ public class RouteServlet extends BaseServlet {
             pageSize=5;
         }
 
-       PageBean<Route> pb= routeService.pageQuery(cid,currentPage,pageSize);
+        PageBean<Route> pb= routeService.pageQuery(cid,currentPage,pageSize);
+
+        writeValue(pb,response);
 
     }
 

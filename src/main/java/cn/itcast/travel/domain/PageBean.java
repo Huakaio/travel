@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PageBean<T> {
     private int totalCount;
-    private int totaoPage;
+    private int totalPage;
     private int currentPage;
     private int pageSize;
     private List<T> list;
@@ -18,12 +18,12 @@ public class PageBean<T> {
         this.totalCount = totalCount;
     }
 
-    public int getTotaoPage() {
-        return totaoPage;
+    public int getTotalPage() {
+        return totalPage;
     }
 
-    public void setTotaoPage(int totaoPage) {
-        this.totaoPage = totaoPage;
+    public void setTotalPage(int totaoPage) {
+        this.totalPage = totaoPage;
     }
 
     public int getCurrentPage() {
