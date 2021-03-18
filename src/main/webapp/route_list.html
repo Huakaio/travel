@@ -37,13 +37,12 @@
                 <li class="threeword"><a href="javascript:;">末页</a></li>*/
 
                 //展示分页页码
-
                 var lis="";
                 var firstPage='<li><a href="">首页</a></li>';
                 var prePage='<li class="threeword"><a href="#">上一页</a></li>';
                 lis+=firstPage;
                 lis+=prePage;
-                for(i=1;i<=pb.totalPage;i++){
+                for(var i=1;i<=pb.totalPage;i++){
                     var li='<li><a href="#">'+i+'</a></li>';
                     lis+=li;
                 }
@@ -52,6 +51,29 @@
                 lis+=nextPage;
                 lis+=lastPage;
                 $("#pageNum").html(lis);
+
+                //路线展示
+                var route_list="";
+                for(var i=0;i<pb.list.length;i++){
+                    var li='<li>\n' +
+'                            <div class="img"><img src="'+pb.list[i].rimage+'" style="width: 299px;"></div>\n' +
+'                            <div class="text1">\n' +
+'                                <p>'+pb.list[i].rname+'</p>\n' +
+'                                <br/>\n' +
+'                                <p>'+pb.list[i].routeInroduce+'</p>\n' +
+'                            </div>\n' +
+'                            <div class="price">\n' +
+'                                <p class="price_num">\n' +
+'                                    <span>&yen;</span>\n' +
+'                                    <span>'+pb.list[i].price+'</span>\n' +
+'                                    <span>起</span>\n' +
+'                                </p>\n' +
+'                                <p><a href="route_detail.html">查看详情</a></p>\n' +
+'                            </div>\n' +
+'                        </li>';
+                    route_list+=li;
+                }
+                  $("#route").html(route_list);
             });
         })
 
@@ -72,7 +94,7 @@
                         <span>商品信息</span>
                         <span class="jg">价格</span>
                     </div>
-                    <ul>
+                    <ul id="route">
                         <li>
                             <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
                             <div class="text1">
