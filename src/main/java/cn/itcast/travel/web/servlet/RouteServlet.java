@@ -28,9 +28,12 @@ public class RouteServlet extends BaseServlet {
         String currentPageStr = request.getParameter("currentPage");
         String pageSizeStr = request.getParameter("pageSize");
         String cidStr = request.getParameter("cid");
+        String rname = request.getParameter("rname");
+
+        rname=new String(rname.getBytes("iso-8859-1"),"utf-8");
 
         int cid=0;
-        if(cidStr!=null&&cidStr.length()>0){
+        if(cidStr!=null&&cidStr.length()>0&& !"null".equals(cidStr)){
             cid=Integer.parseInt(cidStr);
         }
 
@@ -48,10 +51,26 @@ public class RouteServlet extends BaseServlet {
             pageSize=5;
         }
 
-        PageBean<Route> pb= routeService.pageQuery(cid,currentPage,pageSize);
+        PageBean<Route> pb= routeService.pageQuery(cid,currentPage,pageSize,rname);
 
         writeValue(pb,response);
 
+    }
+
+    /**
+     *根据id查询一个旅游线路的详细信息
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void findOne(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+        String rid = request.getParameter("rid");
+
+        Route route=routeService.findOne(rid);
+
+        writeValue(route,response);
     }
 
 }
